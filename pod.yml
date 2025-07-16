@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: warp
+spec:
+  securityContext:
+    sysctls:
+      - name: net.ipv6.conf.all.disable_ipv6
+        value: "0"
+      - name: net.ipv4.conf.all.src_valid_mark
+        value: "1"
+  containers:
+    - name: warp
+      image: registry.hub.docker.com/trosk/warp
+      imagePullPolicy: Never
+      securityContext:
+        capabilities:
+          add:
+            - NET_ADMIN
+            - NET_BIND_SERVICE
+            - SYS_PTRACE
+      env:
+        - name: ORGANIZATION
+          value: string
+        - name: AUTH_CLIENT_ID
+          value: string
+        - name: AUTH_CLIENT_SECRET
+          value: string
