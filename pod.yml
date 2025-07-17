@@ -3,19 +3,15 @@ kind: Pod
 metadata:
   name: warp
 spec:
-  securityContext:
-    sysctls:
-      - name: net.ipv6.conf.all.disable_ipv6
-        value: "0"
-      - name: net.ipv4.conf.all.src_valid_mark
-        value: "1"
   containers:
     - name: warp
-      image: registry.hub.docker.com/trosk/warp
-      imagePullPolicy: Never
+      image: registry.hub.docker.com/trosk/warp:latest
       securityContext:
         capabilities:
           add:
+            - MKNOD
+            - AUDIT_WRITE
+            - NET_RAW
             - NET_ADMIN
             - NET_BIND_SERVICE
             - SYS_PTRACE
