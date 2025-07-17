@@ -12,5 +12,6 @@ Configuration for Warp is done by manually instrumenting mdm.xml for the Warp cl
 - AUTH_CLIENT_ID: The service auth client id to enroll the Warp client.
 - AUTH_CLIENT_SECRET: The service auth client secret to enroll the Warp client.
 - VNET_ID: (optional) The Id of the virtual network that should be connected to.
+- WARP_WAIT: (optional) Seconds to wait after starting Warp service before connecting to virtual network. May need to be adjusted on slow networks. Defaults to 3 seconds.
 
 For service auth to be configured, a Warp enrollment policy must be present to allow service auth for the configured service account.

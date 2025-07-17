@@ -15,7 +15,11 @@ sed -i "s/AUTH_CLIENT_SECRET/$AUTH_CLIENT_SECRET/g" /var/lib/cloudflare-warp/mdm
 
 # Start and wait for service
 warp-svc &
-sleep 3
+if [ -n "$WARP_WAIT" ]; then
+    sleep $WARP_WAIT
+else
+    sleep 3
+fi
 
 # Connect to vnet if present
 if [ -n "$VNET_ID" ]; then
